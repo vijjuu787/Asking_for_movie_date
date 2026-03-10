@@ -225,7 +225,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Dear Sakshi 👋
+            Dear Sakshi
           </motion.p>
 
           <motion.h1
@@ -244,7 +244,7 @@ export default function App() {
               Dhurandhar 2
             </span>
             <br />
-            With Me?
+            With Me? 🥹👉🏻👈🏻
           </motion.h1>
 
           <motion.p
