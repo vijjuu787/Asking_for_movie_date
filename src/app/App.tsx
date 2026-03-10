@@ -84,6 +84,14 @@ export default function App() {
     handleNoHover();
   };
 
+  const blockEvent = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if ("touches" in e && (e as React.TouchEvent).touches.length > 0) {
+      handleNoHover();
+    }
+  };
+
   useEffect(() => {
     if (answer === "yes") {
       const timer = setTimeout(() => setShowConfetti(false), 5000);
@@ -365,8 +373,14 @@ export default function App() {
                 <motion.button
                   ref={noButtonRef}
                   onMouseEnter={handleNoHover}
-                  onPointerDown={handleNoPointer}
-                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-not-allowed select-none"
+                  onMouseDown={blockEvent}
+                  onTouchStart={blockEvent}
+                  onTouchEnd={blockEvent}
+                  onPointerDown={blockEvent}
+                  onClick={blockEvent}
+                  onContextMenu={blockEvent}
+                  disabled
+                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-not-allowed select-none disabled:opacity-100"
                   style={{
                     position: noPosition.x !== 0 ? "fixed" : "relative",
                     left: noPosition.x || "auto",
