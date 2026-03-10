@@ -18,6 +18,16 @@ export default function App() {
   const maybeButtonRef = useRef<HTMLButtonElement>(null);
   const noButtonRef = useRef<HTMLButtonElement>(null);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return (
+        /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent,
+        ) || window.innerWidth < 768
+      );
+    }
+    return false;
+  });
 
   const handleYes = () => {
     setAnswer("yes");
@@ -27,21 +37,19 @@ export default function App() {
   const handleMaybeHover = () => {
     if (!maybeButtonRef.current) return;
 
-    // Store button dimensions if not already stored
+    const width = maybeButtonRef.current.offsetWidth;
+    const height = maybeButtonRef.current.offsetHeight;
+
     if (buttonSize.width === 0) {
-      setButtonSize({
-        width: maybeButtonRef.current.offsetWidth,
-        height: maybeButtonRef.current.offsetHeight,
-      });
+      setButtonSize({ width, height });
     }
 
-    // Calculate boundaries accounting for button size
     const padding = 20;
-    const maxX = Math.max(window.innerWidth - buttonSize.width - padding, 0);
-    const maxY = Math.max(window.innerHeight - buttonSize.height - padding, 0);
+    const maxX = window.innerWidth - width - padding;
+    const maxY = window.innerHeight - height - padding;
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const randomX = Math.max(padding, Math.random() * maxX);
+    const randomY = Math.max(padding, Math.random() * maxY);
 
     setMaybePosition({ x: randomX, y: randomY });
   };
@@ -53,30 +61,27 @@ export default function App() {
   const handleNoHover = () => {
     if (!noButtonRef.current) return;
 
-    // Store button dimensions if not already stored
+    const width = noButtonRef.current.offsetWidth;
+    const height = noButtonRef.current.offsetHeight;
+
     if (noButtonSize.width === 0) {
-      setNoButtonSize({
-        width: noButtonRef.current.offsetWidth,
-        height: noButtonRef.current.offsetHeight,
-      });
+      setNoButtonSize({ width, height });
     }
 
-    // Calculate boundaries accounting for button size
     const padding = 20;
-    const maxX = Math.max(window.innerWidth - noButtonSize.width - padding, 0);
-    const maxY = Math.max(
-      window.innerHeight - noButtonSize.height - padding,
-      0,
-    );
+    const maxX = window.innerWidth - width - padding;
+    const maxY = window.innerHeight - height - padding;
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const randomX = Math.max(padding, Math.random() * maxX);
+    const randomY = Math.max(padding, Math.random() * maxY);
 
     setNoPosition({ x: randomX, y: randomY });
   };
 
-  const handleNo = () => {
-    setAnswer("no");
+  const handleNoPointer = (e: React.PointerEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleNoHover();
   };
 
   useEffect(() => {
@@ -85,6 +90,19 @@ export default function App() {
       return () => clearTimeout(timer);
     }
   }, [answer]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice =
+        /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent,
+        );
+      setIsMobile(isMobileDevice || window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <div className="min-h-screen w-full overflow-hidden relative bg-gradient-to-br from-purple-900 via-pink-900 to-rose-900">
@@ -285,9 +303,18 @@ export default function App() {
               perfect if we go together.
             </p>
             <div className="flex justify-center gap-2">
-              <Heart fill="#ec4899" className="text-pink-500 w-5 h-5 sm:w-6 sm:h-6" />
-              <Heart fill="#f472b6" className="text-pink-400 w-5 h-5 sm:w-6 sm:h-6" />
-              <Heart fill="#fda4af" className="text-pink-300 w-5 h-5 sm:w-6 sm:h-6" />
+              <Heart
+                fill="#ec4899"
+                className="text-pink-500 w-5 h-5 sm:w-6 sm:h-6"
+              />
+              <Heart
+                fill="#f472b6"
+                className="text-pink-400 w-5 h-5 sm:w-6 sm:h-6"
+              />
+              <Heart
+                fill="#fda4af"
+                className="text-pink-300 w-5 h-5 sm:w-6 sm:h-6"
+              />
             </div>
           </div>
         </motion.div>
@@ -302,7 +329,7 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ delay: 1.5 }}
             >
-              <div className="flex flex-col gap-3 sm:gap-4 md:gap-6">
+              <div className="flex flex-col gap-4 sm:gap-6">
                 <motion.button
                   onClick={handleYes}
                   className="w-full py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-2xl hover:shadow-pink-500/50 transition-all"
@@ -338,8 +365,8 @@ export default function App() {
                 <motion.button
                   ref={noButtonRef}
                   onMouseEnter={handleNoHover}
-                  onClick={handleNo}
-                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-pointer hover:scale-110"
+                  onPointerDown={handleNoPointer}
+                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-not-allowed select-none"
                   style={{
                     position: noPosition.x !== 0 ? "fixed" : "relative",
                     left: noPosition.x || "auto",
