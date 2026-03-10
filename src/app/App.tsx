@@ -190,11 +190,11 @@ export default function App() {
               repeatDelay: 1,
             }}
           >
-            <Popcorn className="text-yellow-300 mx-auto" size={48} />
+            <Popcorn className="text-yellow-300 mx-auto w-10 h-10 sm:w-12 sm:h-12" />
           </motion.div>
 
           <motion.h1
-            className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-4 sm:mb-6 px-4"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 px-2 sm:px-4 leading-tight"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{
@@ -213,7 +213,7 @@ export default function App() {
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-2xl text-pink-200 max-w-2xl mx-auto px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-pink-200 max-w-2xl mx-auto px-2 sm:px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -224,7 +224,7 @@ export default function App() {
 
         {/* Movie Poster Section */}
         <motion.div
-          className="max-w-md mx-auto mb-12 sm:mb-16 px-4"
+          className="max-w-sm sm:max-w-md md:max-w-lg mx-auto mb-8 sm:mb-12 md:mb-16 px-2 sm:px-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7 }}
@@ -245,10 +245,10 @@ export default function App() {
               <ImageWithFallback
                 src="/images/bunny/tenor.gif"
                 alt="Cute bunny GIF"
-                className="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[500px]"
+                className="w-full h-auto rounded-xl shadow-2xl object-contain max-h-[300px] sm:max-h-[400px] md:max-h-[500px]"
               />
               <motion.div
-                className="absolute top-2 right-2"
+                className="absolute top-1 right-1 sm:top-2 sm:right-2"
                 animate={{
                   rotate: [0, 360],
                   scale: [1, 1.2, 1],
@@ -258,12 +258,12 @@ export default function App() {
                   repeat: Infinity,
                 }}
               >
-                <Sparkles className="text-yellow-300" size={32} />
+                <Sparkles className="text-yellow-300 w-6 h-6 sm:w-8 sm:h-8" />
               </motion.div>
             </div>
           </div>
           <motion.p
-            className="text-center mt-6 text-pink-100 italic text-base sm:text-lg px-4"
+            className="text-center mt-4 sm:mt-6 text-pink-100 italic text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -274,20 +274,20 @@ export default function App() {
 
         {/* Cute Message Section */}
         <motion.div
-          className="max-w-2xl mx-auto mb-12 sm:mb-16 text-center px-4"
+          className="max-w-xl sm:max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 text-center px-2 sm:px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-pink-300/30 shadow-2xl">
-            <p className="text-xl sm:text-2xl text-white leading-relaxed mb-4">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-pink-300/30 shadow-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed mb-4">
               Instead of watching this movie alone, I thought it would be
               perfect if we go together.
             </p>
             <div className="flex justify-center gap-2">
-              <Heart fill="#ec4899" className="text-pink-500" size={24} />
-              <Heart fill="#f472b6" className="text-pink-400" size={24} />
-              <Heart fill="#fda4af" className="text-pink-300" size={24} />
+              <Heart fill="#ec4899" className="text-pink-500 w-5 h-5 sm:w-6 sm:h-6" />
+              <Heart fill="#f472b6" className="text-pink-400 w-5 h-5 sm:w-6 sm:h-6" />
+              <Heart fill="#fda4af" className="text-pink-300 w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
         </motion.div>
@@ -296,16 +296,16 @@ export default function App() {
         <AnimatePresence mode="wait">
           {!answer && (
             <motion.div
-              className="max-w-md mx-auto mb-12 px-4"
+              className="max-w-sm sm:max-w-md mx-auto mb-8 sm:mb-12 px-2 sm:px-4"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ delay: 1.5 }}
             >
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3 sm:gap-4 md:gap-6">
                 <motion.button
                   onClick={handleYes}
-                  className="w-full py-6 text-2xl sm:text-3xl font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-2xl hover:shadow-pink-500/50 transition-all"
+                  className="w-full py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-2xl hover:shadow-pink-500/50 transition-all"
                   whileHover={{ scale: 0.95 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -316,7 +316,7 @@ export default function App() {
                   ref={maybeButtonRef}
                   // onMouseEnter={handleMaybeHover}
                   onClick={handleMaybe}
-                  className="py-6 text-2xl sm:text-3xl font-bold rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-2xl hover:shadow-purple-500/50 transition-all"
+                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-2xl hover:shadow-purple-500/50 transition-all"
                   style={{
                     position: maybePosition.x !== 0 ? "fixed" : "relative",
                     left: maybePosition.x || "auto",
@@ -339,7 +339,7 @@ export default function App() {
                   ref={noButtonRef}
                   onMouseEnter={handleNoHover}
                   onClick={handleNo}
-                  className="py-6 text-2xl sm:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-pointer hover:scale-110"
+                  className="py-3 sm:py-4 md:py-6 text-base sm:text-xl md:text-2xl lg:text-3xl font-bold rounded-full bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 text-white shadow-2xl hover:shadow-green-500/50 transition-all cursor-pointer hover:scale-110"
                   style={{
                     position: noPosition.x !== 0 ? "fixed" : "relative",
                     left: noPosition.x || "auto",
@@ -363,12 +363,12 @@ export default function App() {
 
           {answer === "yes" && (
             <motion.div
-              className="max-w-2xl mx-auto text-center px-4 mb-12"
+              className="max-w-xl sm:max-w-2xl mx-auto text-center px-2 sm:px-4 mb-8 sm:mb-12"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <div className="bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{
@@ -376,14 +376,14 @@ export default function App() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="inline-block mb-4"
+                  className="inline-block mb-3 sm:mb-4"
                 >
-                  <Sparkles className="text-yellow-300" size={64} />
+                  <Sparkles className="text-yellow-300 w-12 h-12 sm:w-16 sm:h-16" />
                 </motion.div>
-                <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
                   Yay! 🎉
                 </h2>
-                <p className="text-xl sm:text-2xl text-white mb-6">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-4 sm:mb-6">
                   Date confirmed! I'll plan the popcorn. 🍿
                 </p>
                 <motion.div
@@ -392,8 +392,7 @@ export default function App() {
                 >
                   <Heart
                     fill="white"
-                    className="text-white mx-auto"
-                    size={48}
+                    className="text-white mx-auto w-10 h-10 sm:w-12 sm:h-12"
                   />
                 </motion.div>
               </div>
@@ -402,21 +401,21 @@ export default function App() {
 
           {answer === "no" && (
             <motion.div
-              className="max-w-2xl mx-auto text-center px-4 mb-12"
+              className="max-w-xl sm:max-w-2xl mx-auto text-center px-2 sm:px-4 mb-8 sm:mb-12"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
-                <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">
+              <div className="bg-gradient-to-r from-green-600 via-emerald-500 to-green-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
                   Oh No... 😢
                 </h2>
-                <p className="text-xl sm:text-2xl text-green-100 mb-6">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-green-100 mb-4 sm:mb-6">
                   That's okay! Maybe next time? 💔
                 </p>
                 <motion.button
                   onClick={() => setAnswer(null)}
-                  className="mt-8 px-8 py-3 text-lg font-bold rounded-full bg-white text-green-600 shadow-xl hover:bg-green-50 transition-all"
+                  className="mt-6 sm:mt-8 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base md:text-lg font-bold rounded-full bg-white text-green-600 shadow-xl hover:bg-green-50 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -428,16 +427,16 @@ export default function App() {
 
           {answer === "maybe" && (
             <motion.div
-              className="max-w-2xl mx-auto text-center px-4 mb-12"
+              className="max-w-xl sm:max-w-2xl mx-auto text-center px-2 sm:px-4 mb-8 sm:mb-12"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
                   Let me convince you... 😊
                 </h2>
-                <div className="space-y-4 text-left text-white text-lg sm:text-xl">
+                <div className="space-y-3 sm:space-y-4 text-left text-white text-sm sm:text-base md:text-lg lg:text-xl">
                   <motion.p
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -469,7 +468,7 @@ export default function App() {
                 </div>
                 <motion.button
                   onClick={handleYes}
-                  className="mt-8 w-full py-4 text-xl sm:text-2xl font-bold rounded-full bg-white text-pink-600 shadow-xl hover:bg-pink-50 transition-all"
+                  className="mt-6 sm:mt-8 w-full py-3 sm:py-4 text-sm sm:text-lg md:text-xl lg:text-2xl font-bold rounded-full bg-white text-pink-600 shadow-xl hover:bg-pink-50 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0 }}
@@ -480,7 +479,7 @@ export default function App() {
                 </motion.button>
                 <motion.button
                   onClick={() => setAnswer(null)}
-                  className="mt-4 w-full py-3 text-lg sm:text-xl font-bold rounded-full bg-white/20 text-white border-2 border-white shadow-xl hover:bg-white/30 transition-all"
+                  className="mt-3 sm:mt-4 w-full py-2 sm:py-3 text-sm sm:text-base md:text-lg lg:text-xl font-bold rounded-full bg-white/20 text-white border-2 border-white shadow-xl hover:bg-white/30 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0 }}
@@ -496,7 +495,7 @@ export default function App() {
 
         {/* Footer */}
         <motion.footer
-          className="text-center text-pink-200 text-sm sm:text-base pb-8"
+          className="text-center text-pink-200 text-xs sm:text-sm md:text-base pb-6 sm:pb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
