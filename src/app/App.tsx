@@ -219,6 +219,15 @@ export default function App() {
             <Popcorn className="text-yellow-300 mx-auto w-10 h-10 sm:w-12 sm:h-12" />
           </motion.div>
 
+          <motion.p
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-pink-300 mb-2 sm:mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            Dear Sakshi 👋
+          </motion.p>
+
           <motion.h1
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 px-2 sm:px-4 leading-tight"
             initial={{ scale: 0.5 }}
@@ -229,10 +238,10 @@ export default function App() {
               damping: 15,
             }}
           >
-            Will You Watch
+            Would You like to Watch
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-rose-300 to-purple-300">
-              Dhurander 2
+              Dhurandhar 2
             </span>
             <br />
             With Me?
@@ -396,7 +405,7 @@ export default function App() {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  ❌ No
+                  ❌ No -- F bhai
                 </motion.button>
               </div>
             </motion.div>
